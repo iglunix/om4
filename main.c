@@ -235,6 +235,7 @@ main(int argc, char *argv[])
 			break;
 		case 'G':
 			mimic_gnu = 0;
+			break;
 		case 'd':
 			set_trace_flags(optarg);
 			break;
