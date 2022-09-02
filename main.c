@@ -187,7 +187,7 @@ main(int argc, char *argv[])
 	outfile = NULL;
 	resizedivs(MAXOUT);
 
-	dodefine("__GNU__", "");
+	dodefine("__gnu__", "");
 
 	static const struct option long_options[] = {
 		{"gnu", 0, 0, 'g'},
