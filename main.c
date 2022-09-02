@@ -50,6 +50,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <getopt.h>
 #include <ohash.h>
 #include "mdef.h"
 #include "stdd.h"
@@ -188,7 +189,22 @@ main(int argc, char *argv[])
 
 	dodefine("__GNU__", "");
 
-	while ((c = getopt(argc, argv, "gst:d:D:EU:o:I:P")) != -1)
+	static const struct option long_options[] = {
+		{"gnu", 0, 0, 'g'},
+		{"traditional", 0, 0, 'G'},
+		{"help", 0, 0, 'h'},
+		{"synclines", 0, 0, 's'},
+		{"trace", 1, 0, 't'},
+		{"debug", 1, 0, 'd'},
+		{"define", 1, 0, 'D'},
+		{"fatal-warnings", 0, 0, 'E'},
+		{"undefine", 1, 0, 'U'},
+		{"include", 1, 0, 'I'},
+		{"prefix-builtins", 0, 0, 'P'},
+		{0, 0, 0, 0}
+	};
+
+	while ((c = getopt_long(argc, argv, "gGhst:d:D:EU:o:I:P", long_options, NULL)) != -1)
 		switch(c) {
 
 		case 'D':               /* define something..*/
@@ -217,6 +233,8 @@ main(int argc, char *argv[])
 		case 'g':
 			mimic_gnu = 1;
 			break;
+		case 'G':
+			mimic_gnu = 0;
 		case 'd':
 			set_trace_flags(optarg);
 			break;
@@ -230,6 +248,7 @@ main(int argc, char *argv[])
 			trace_file(optarg);
                         break;
 		case '?':
+		case 'h':
 			usage();
 		}
 

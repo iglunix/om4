@@ -381,9 +381,26 @@ xstrdup(const char *s)
 void
 usage(void)
 {
-	fprintf(stderr, "usage: m4 [-EgPs] [-Dname[=value]] [-d flags] "
+	fprintf(stderr, "usage: m4 [-EgGPs] [-Dname[=value]] [-d flags] "
 			"[-I dirname] [-o filename]\n"
 			"\t[-t macro] [-Uname] [file ...]\n");
+	char const *opts[][3] = {
+		{"h", "help", "print this help message and exit"},
+		{"P", "prefix-builtins", "prefix all builtins with `m4_`"},
+		{"E", "fatal-warnings", "warnings become errors"},
+		{"D", "define=NAME[=VALUE]", "define NAME"},
+		{"I", "include=DIRECTORY", "include DIRECTORY"},
+		{"s", "sync-lines", "generate `#line /* ... */` lines"},
+		{"U", "undefine=NAME", "undefine NAME"},
+		{"g", "gnu", "enable GNU extensions (default)"},
+		{"G", "traditional", "disable GNU extensions"},
+		{"d", "debug=FLAGS", "set debug level"},
+		{NULL, NULL, NULL}
+	};
+	unsigned i;
+	for (i = 0; opts[i][0]; i++) {
+		fprintf(stderr, "  -%s, --%-32s %s\n", opts[i][0], opts[i][1], opts[i][2]);
+	}
 	exit(1);
 }
 
