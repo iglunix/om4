@@ -186,6 +186,8 @@ main(int argc, char *argv[])
 	outfile = NULL;
 	resizedivs(MAXOUT);
 
+	dodefine("__GNU__", "");
+
 	while ((c = getopt(argc, argv, "gst:d:D:EU:o:I:P")) != -1)
 		switch(c) {
 

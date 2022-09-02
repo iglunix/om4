@@ -49,7 +49,7 @@
 #include "extern.h"
 
 
-int mimic_gnu = 0;
+int mimic_gnu = 1;
 
 /*
  * Support for include path search
