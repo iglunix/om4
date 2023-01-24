@@ -1,6 +1,6 @@
 #!/bin/sh
 
-:> config.h
+echo '#include "portability.h"' > config.h
 
 strlcpycheck() {
 	cat << EOF > conftest.c
